@@ -37,7 +37,7 @@ function Nav(props) {
 
 function Article(props) {
   return (
-    <article>
+    <article className='content'>
       <h2>
         {props.title}
       </h2>
@@ -135,7 +135,7 @@ function App() {
   return (
     <div>
       <Header 
-        title="hi" 
+        title="HELLO REACT WORLD" 
         onChangeMode={()=>{setMode('WELCOME');}}>
       </Header>
       <Nav topics={topics} onChangeMode={(_id)=>{

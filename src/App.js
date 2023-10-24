@@ -99,10 +99,21 @@ function App() {
     content = <Article title='Welcome' body="HELLO, REACT"></Article>;
   } else if (mode === 'READ'){
     content = <Article title={topics[id].title} body={topics[id].body}></Article>;
-    contentControl = <li><a href={'/update/' + id} onClick={(event)=>{
+    contentControl = <><li><a href={'/update/' + id} onClick={(event)=>{
       event.preventDefault();
       setMode('UPDATE');
-    }}>UPDATE</a></li>;
+    }}>UPDATE</a></li>
+    <li><input type="button" value="Delete" onClick={()=>{
+      const newTopics = [];
+      for (let i = 0; i < topics.length; i++)
+      {
+        if (i !== id)
+          newTopics.push(topics[i]);
+      }
+      setTopics(newTopics);
+      setMode('WELCOME');
+    }}></input></li>
+    </>;
   } else if (mode === 'CREATE'){
     content = <Create onCreate={(title, body)=>{
       const tmpTopics = topics.slice();
@@ -119,7 +130,6 @@ function App() {
       tmpTopics[id] = newTopic;
       setTopics(tmpTopics);
       setMode('READ');
-      setId(id);
     }}></Update>
   }
   return (
